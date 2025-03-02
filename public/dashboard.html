@@ -59,20 +59,13 @@
     }
   </style>
 </head>
+
+<!-- Add the Firebase scripts -->
 <script type="module" src="firebase-config.js"></script>
 
-<script type="module">
-  import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
-  const auth = getAuth();
+<!-- Add the check-login script -->
+<script type="module" src="check-login.js"></script>
 
-  // Check if the user is authenticated
-  onAuthStateChanged(auth, (user) => {
-    if (!user) {
-      // If no user is signed in, redirect to the login page
-      window.location.href = "/index.html";
-    }
-  });
-</script>
 <body>
   <h1>Welcome to the Platypus Page!</h1>
   <img src="https://static01.nyt.com/images/2021/01/19/science/09TB-PLATYPUS/09TB-PLATYPUS-superJumbo.jpg" alt="Platypus" height="500" width="500">
