@@ -3,42 +3,114 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Welcome Page</title>
+  <title>Welcome to Platypus Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .container {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      width: 350px;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+      color: #333;
+    }
+
+    input {
+      width: 90%;
+      padding: 8px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .btn-container {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    button {
+      padding: 10px;
+      width: 48%;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    .login-btn {
+      background: #007bff;
+      color: white;
+    }
+
+    .register-btn {
+      background: #28a745;
+      color: white;
+    }
+
+    button:hover {
+      opacity: 0.8;
+    }
+
+    #login-container, #register-container {
+      display: none;
+    }
+
+    .error-message {
+      color: red;
+      margin-top: 10px;
+    }
+
+    .success-message {
+      color: green;
+      margin-top: 10px;
+    }
+  </style>
 </head>
 
 <body>
-  <h1>Welcome to the Platypus Page!</h1>
+  <div class="container">
+    <h2>Welcome to Platypus Page!</h2>
 
-  <!-- Login Section -->
-  <div id="login-container">
-    <h2>Login</h2>
-    <form id="login-form">
-      <label for="email">Email:</label>
-      <input type="email" id="email" required>
-      <br>
-      <label for="password">Password:</label>
-      <input type="password" id="password" required>
-      <br>
-      <button type="submit">Login</button>
-    </form>
-    <div id="login-error" style="color: red;"></div>
-  </div>
+    <div class="btn-container">
+      <button class="login-btn" onclick="showLogin()">Login</button>
+      <button class="register-btn" onclick="showRegister()">Register</button>
+    </div>
 
-  <hr>
+    <!-- Login Form -->
+    <div id="login-container">
+      <h2>Login</h2>
+      <form id="login-form">
+        <input type="email" id="email" placeholder="Email" required>
+        <input type="password" id="password" placeholder="Password" required>
+        <button type="submit" class="login-btn">Login</button>
+      </form>
+      <div id="login-error" class="error-message"></div>
+    </div>
 
-  <!-- Registration Section -->
-  <div id="register-container">
-    <h2>Register</h2>
-    <form id="register-form">
-      <label for="reg-email">Email:</label>
-      <input type="email" id="reg-email" required>
-      <br>
-      <label for="reg-password">Password:</label>
-      <input type="password" id="reg-password" required>
-      <br>
-      <button type="submit">Register</button>
-    </form>
-    <div id="register-error" style="color: red;"></div>
+    <!-- Register Form -->
+    <div id="register-container">
+      <h2>Register</h2>
+      <form id="register-form">
+        <input type="email" id="reg-email" placeholder="Email" required>
+        <input type="password" id="reg-password" placeholder="Password" required>
+        <button type="submit" class="register-btn">Register</button>
+      </form>
+      <div id="register-error" class="error-message"></div>
+    </div>
   </div>
 
   <script type="module">
@@ -58,6 +130,21 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
+    // Show login form by default
+    document.getElementById('login-container').style.display = 'block';
+
+    // Show Login Form
+    function showLogin() {
+      document.getElementById('login-container').style.display = 'block';
+      document.getElementById('register-container').style.display = 'none';
+    }
+
+    // Show Register Form
+    function showRegister() {
+      document.getElementById('register-container').style.display = 'block';
+      document.getElementById('login-container').style.display = 'none';
+    }
+
     // Login event
     document.getElementById('login-form').addEventListener('submit', async (e) => {
       e.preventDefault();
@@ -67,10 +154,11 @@
 
       try {
         await signInWithEmailAndPassword(auth, email, password);
-        loginError.style.color = "green";
+        loginError.className = "success-message";
         loginError.textContent = "Login successful!";
         setTimeout(() => window.location.href = "dashboard.html", 1000);
       } catch (error) {
+        loginError.className = "error-message";
         loginError.textContent = `Error: ${error.message}`;
       }
     });
@@ -84,9 +172,11 @@
 
       try {
         await createUserWithEmailAndPassword(auth, email, password);
-        registerError.style.color = "green";
+        registerError.className = "success-message";
         registerError.textContent = "Registration successful! You can now log in.";
+        showLogin();
       } catch (error) {
+        registerError.className = "error-message";
         registerError.textContent = `Error: ${error.message}`;
       }
     });
