@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome Page</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      text-align: center;
+      background-color: #f0f8ff;
+    }
+
+    h1 {
+      color: #333;
+      margin-top: 20px;
+    }
+
+    img {
+      max-width: 90%;
+      height: auto;
+      border-radius: 10px;
+      margin: 20px 0;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    }
+
+    .links {
+      margin-top: 20px;
+    }
+
+    a {
+      display: inline-block;
+      text-decoration: none;
+      font-size: 18px;
+      color: white;
+      background-color: #007BFF;
+      padding: 10px 20px;
+      margin: 10px;
+      border-radius: 5px;
+      transition: background-color 0.3s;
+    }
+
+    a:hover {
+      background-color: #0056b3;
+    }
+
+    button {
+      font-size: 18px;
+      color: white;
+      background-color: #007BFF;
+      padding: 10px 20px;
+      margin: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+  </style>
+</head>
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-analytics.js";
+  import { getAuth } from "firebase/auth";
+  import { getDatabase } from "firebase/database";
+  
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyDgi-7M-X8NQ_0HG1urQphS0982KrFldsc",
+    authDomain: "lemur-c8d6b.firebaseapp.com",
+    projectId: "lemur-c8d6b",
+    storageBucket: "lemur-c8d6b.firebasestorage.app",
+    messagingSenderId: "319892895415",
+    appId: "1:319892895415:web:42d10b09975a8f8ddc7f32",
+    measurementId: "G-8GPEHHFGK3"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
+<body>
+  <h1>Welcome to the Platypus Page!</h1>
+  <img src="https://static01.nyt.com/images/2021/01/19/science/09TB-PLATYPUS/09TB-PLATYPUS-superJumbo.jpg" alt="Platypus" height="500" width="500">
+  <h2>________________________________</h2>
+  <button onclick="isFriday()">Is it Friday?</button>
+  <div class="links">
+    <a href="/game.html">Go to Game</a>
+    <a href="/game2.html">Go to Game 2</a>
+    <a href="/game3.html">Go to Game 3</a>
+    <a href="/game4.html">Go to Box Runner Game</a>
+    <a href="/game5.html">Go to Game 5</a>
+    <a href="/lemur.html">Lemur Page 6</a>
+    <a href="/snake.html">Snake!! 6</a>
+  </div>
+</body>
+<script>
+/* create a function that checks if it is friday */
+function isFriday() {
+  const today = new Date();
+  if (today.getDay() === 5) {
+    alert('Yes, it is Friday!');
+    // Create two buttons to choose between yes and no for burger
+    const yesButton = document.createElement('button');
+    yesButton.textContent = 'Yes';
+    yesButton.style.backgroundColor = '#28a745';
+    yesButton.style.margin = '10px';
+    yesButton.style.border = 'none';
+    yesButton.style.borderRadius = '5px';
+    yesButton.style.color = 'white';
+
+    const noButton = document.createElement('button');
+    noButton.textContent = 'No';
+    noButton.style.backgroundColor = '#dc3545';
+    noButton.style.margin = '10px';
+    noButton.style.border = 'none';
+    noButton.style.borderRadius = '5px';
+    noButton.style.color = 'white';
+
+    // text
+    const text = document.createElement('h2');
+    text.textContent = 'Skal vi ik have bur-ger idag?';
+
+    // burger question
+    yesButton.onclick = function() {
+      alert('Jaaa, Tjaaakk');
+    }
+
+    noButton.onclick = function() {
+      alert('Du er da godt nok lidt mæh');
+    }
+
+    // Append the buttons to the body
+    document.body.appendChild(text);
+    document.body.appendChild(yesButton);
+    document.body.appendChild(noButton);
+
+
+  } else {
+    alert('No, it is not Friday. ;-(');
+    
+
+
+  }
+}
+</script>
+</html>
