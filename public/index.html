@@ -121,10 +121,16 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
-    // Clear all error/success messages when switching forms
+    // Clear all error/success messages and input fields when switching forms
     function clearMessages() {
       document.getElementById('login-error').textContent = '';
       document.getElementById('register-error').textContent = '';
+      
+      // Clear input fields for both login and register forms
+      document.getElementById('email').value = '';
+      document.getElementById('password').value = '';
+      document.getElementById('reg-email').value = '';
+      document.getElementById('reg-password').value = '';
     }
 
     // Toggle between login and register form
