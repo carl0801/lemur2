@@ -67,18 +67,28 @@
 <script type="module" src="check-login.js"></script>
 
 <body>
-  <h1>Welcome to the Platypus Page!</h1>
-  <img src="https://static01.nyt.com/images/2021/01/19/science/09TB-PLATYPUS/09TB-PLATYPUS-superJumbo.jpg" alt="Platypus" height="500" width="500">
-  <h2>________________________________</h2>
-  <button onclick="isFriday()">Is it Friday?</button>
-  <div class="links">
-    <a href="/game.html">Go to Game</a>
-    <a href="/game2.html">Go to Game 2</a>
-    <a href="/game3.html">Go to Game 3</a>
-    <a href="/game4.html">Go to Box Runner Game</a>
-    <a href="/game5.html">Go to Game 5</a>
-    <a href="/lemur.html">Lemur Page 6</a>
-    <a href="/snake.html">Snake!! 6</a>
+
+  <!-- Loading Screen -->
+  <div id="loading-screen">
+    <div class="spinner"></div>
+    <p class="loading-text">Loading...</p>
+  </div>
+
+  <!-- Dashboard Content -->
+  <div id="dashboard-content" style="display: none;">
+    <h1>Welcome to the Platypus Page!</h1>
+    <img src="https://static01.nyt.com/images/2021/01/19/science/09TB-PLATYPUS/09TB-PLATYPUS-superJumbo.jpg" alt="Platypus" height="500" width="500">
+    <h2>________________________________</h2>
+    <button onclick="isFriday()">Is it Friday?</button>
+    <div class="links">
+      <a href="/game.html">Go to Game</a>
+      <a href="/game2.html">Go to Game 2</a>
+      <a href="/game3.html">Go to Game 3</a>
+      <a href="/game4.html">Go to Box Runner Game</a>
+      <a href="/game5.html">Go to Game 5</a>
+      <a href="/lemur.html">Lemur Page 6</a>
+      <a href="/snake.html">Snake!! 6</a>
+    </div>
   </div>
 </body>
 <script>
