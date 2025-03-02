@@ -83,7 +83,11 @@
 <script type="module" src="firebase-config.js"></script>
 
 <!-- Add the check-login script -->
-<script type="module" src="check-login.js"></script>
+<script type="module" src="check-login.js">
+  // Add the logout event listener
+  import { logout } from './check-login.js';
+  document.getElementById("logout-button").addEventListener("click", logout);
+</script>
 
 <body>
 
@@ -108,10 +112,6 @@
   </div>
 </body>
 <script>
-
-// Add the logout event listener
-import { logout } from './check-login.js';
-document.getElementById("logout-button").addEventListener("click", logout);
 
 /* create a function that checks if it is friday */
 function isFriday() {
