@@ -12,7 +12,7 @@ dashboardContent.style.display = 'none'; // Hide the content initially
 onAuthStateChanged(auth, (user) => {
   if (!user) {
     // If not logged in, redirect to login page
-    window.location.href = "/index.html";
+    window.location.href = "**";
   } else {
     // If logged in, show the dashboard content
     dashboardContent.style.display = 'block';
@@ -26,7 +26,7 @@ onAuthStateChanged(auth, (user) => {
 function logout() {
     signOut(auth).then(() => {
       // After logging out, redirect to login page
-      window.location.href = "/index.html";
+      window.location.href = "**";
     }).catch((error) => {
       console.error("Error logging out: ", error);
     });
