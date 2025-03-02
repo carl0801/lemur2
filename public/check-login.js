@@ -32,3 +32,5 @@ function logout() {
     });
 }
 
+export { logout };
+

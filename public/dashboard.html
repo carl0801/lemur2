@@ -80,15 +80,14 @@
 </head>
 
 <!-- Add the Firebase scripts -->
-<script type="module" src="firebase-config.js"></script>
-
-<!-- Add the check-login script -->
-<script type="module" src="check-login.js"></script>
+<script type="module" src="firebase-config.js">
+  import { logout } from './firebase-config.js';
+</script>
 
 <body>
 
   <!-- Logout Button -->
-  <button id="logout-button" onclick="logout()">Log Out</button>
+  <button id="logout-button" onclick="logout">Log Out</button>
 
   <!-- Loading Screen -->
   <div id="loading-screen">
