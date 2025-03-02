@@ -1,25 +1,20 @@
 
-import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
-  
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+
 const auth = getAuth();
-const loadingScreen = document.getElementById('loading-screen'); // Ensure this exists in your HTML
-const dashboardContent = document.getElementById('dashboard-content'); // The main content
 
-// Show the loading screen while checking auth state
-loadingScreen.style.display = 'flex';  // Show the loading screen
-dashboardContent.style.display = 'none'; // Hide the content initially
-
+// Check if user is logged in
 onAuthStateChanged(auth, (user) => {
   if (!user) {
-    // If not logged in, redirect to login page
-    window.location.href = "/";
-  } else {
-    // If logged in, show the dashboard content
-    dashboardContent.style.display = 'block';
+    window.location.href = "/"; // Redirect to login if not logged in
   }
+});
 
-  // Hide the loading screen after checking auth state
-  loadingScreen.style.display = 'none';
+// Log out the user when they leave the page
+window.addEventListener("beforeunload", () => {
+  signOut(auth).catch((error) => {
+    console.error("Error logging out:", error);
+  });
 });
 
 // Example of a logout function
