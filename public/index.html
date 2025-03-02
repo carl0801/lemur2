@@ -121,11 +121,20 @@
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
 
+    // Clear all error/success messages when switching forms
+    function clearMessages() {
+      document.getElementById('login-error').textContent = '';
+      document.getElementById('register-error').textContent = '';
+    }
+
     // Toggle between login and register form
     function toggleForm() {
       const loginContainer = document.getElementById('login-container');
       const registerContainer = document.getElementById('register-container');
       const formTitle = document.getElementById('form-title');
+
+      // Clear any messages before toggling
+      clearMessages();
 
       if (loginContainer.style.display === "none") {
         loginContainer.style.display = "block";
