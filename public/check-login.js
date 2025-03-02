@@ -1,11 +1,13 @@
 
 import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+
 const auth = getAuth();
 
-// Check if the user is authenticated
+// Check if the user is signed in
 onAuthStateChanged(auth, (user) => {
-    if (!user) {
-    // If no user is signed in, redirect to the login page
+  if (!user) {
+    // If no user is signed in, redirect to login page
     window.location.href = "/index.html";
-    }
+  }
 });
+
