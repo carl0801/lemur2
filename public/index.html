@@ -95,6 +95,7 @@
     <!-- Register Form -->
     <div id="register-container">
       <form id="register-form">
+        <input type="text" id="reg-username" placeholder="Username" required>
         <input type="email" id="reg-email" placeholder="Email" required>
         <input type="password" id="reg-password" placeholder="Password" required>
         <button type="submit">Register</button>
@@ -107,6 +108,7 @@
   <script type="module">
     import { initializeApp } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-app.js";
     import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-auth.js";
+    import { getDatabase, ref, set } from "https://www.gstatic.com/firebasejs/11.4.0/firebase-database.js";
 
     const firebaseConfig = {
       apiKey: "AIzaSyDgi-7M-X8NQ_0HG1urQphS0982KrFldsc",
@@ -120,6 +122,7 @@
 
     const app = initializeApp(firebaseConfig);
     const auth = getAuth(app);
+    const db = getDatabase(app);
 
     // Clear all error/success messages and input fields when switching forms
     function clearMessages() {
@@ -129,6 +132,7 @@
       // Clear input fields for both login and register forms
       document.getElementById('email').value = '';
       document.getElementById('password').value = '';
+      document.getElementById('reg-username').value = '';
       document.getElementById('reg-email').value = '';
       document.getElementById('reg-password').value = '';
     }
@@ -178,12 +182,25 @@
     // Register event
     document.getElementById('register-form').addEventListener('submit', async (e) => {
       e.preventDefault();
+      const username = document.getElementById('reg-username').value;
       const email = document.getElementById('reg-email').value;
       const password = document.getElementById('reg-password').value;
       const registerError = document.getElementById('register-error');
 
       try {
-        await createUserWithEmailAndPassword(auth, email, password);
+        const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+        const user = userCredential.user;
+
+        // Save user data to Realtime Database
+        const userRef = ref(db, 'users/' + user.uid);
+        await set(userRef, {
+          gameData: {},
+          userData: {
+            score: 0,
+            username: username
+          }
+        });
+
         registerError.className = "success-message";
         registerError.textContent = "Registration successful! You can now log in.";
         setTimeout(toggleForm, 1000); // Switch to login form after 1 second
