@@ -57,6 +57,25 @@
       cursor: pointer;
       transition: background-color 0.3s;
     }
+
+      /* Logout button styles */
+      #logout-button {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      padding: 10px 15px;
+      background-color: #dc3545;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: background-color 0.3s;
+    }
+
+    #logout-button:hover {
+      background-color: #c82333;
+    }
   </style>
 </head>
 
@@ -67,6 +86,9 @@
 <script type="module" src="check-login.js"></script>
 
 <body>
+
+  <!-- Logout Button -->
+  <button id="logout-button" onclick="logout()">Log Out</button>
 
   <!-- Loading Screen -->
   <div id="loading-screen">
