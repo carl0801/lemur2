@@ -107,6 +107,7 @@
 
   <script type="module" src="firebase-config.js"></script>
   <script type="module">
+    import { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, db, ref, set } from './firebase-config.js';
 
     // Clear all error/success messages and input fields when switching forms
     function clearMessages() {
