@@ -90,7 +90,7 @@
 <body>
 
   <!-- Logout Button -->
-  <button id="logout-button" onclick="logout()">Log Out</button>
+  <button id="logout-button">Log Out</button>
 
   <!-- Dashboard Content -->
   <div id="dashboard-content">
@@ -110,6 +110,10 @@
   </div>
 </body>
 <script>
+
+// Add the logout event listener
+document.getElementById("logout-button").addEventListener("click", logout);
+
 /* create a function that checks if it is friday */
 function isFriday() {
   const today = new Date();
