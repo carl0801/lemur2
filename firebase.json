@@ -7,11 +7,11 @@
       "**/node_modules/**"
     ],
     "rewrites": [
-      { "source": "/dashboard",
-        "destination": "/dashboard.html" 
-      },
       { "source": "/snake",
         "destination": "/snake.html" 
+      },
+      { "source": "/dashboard",
+        "destination": "/dashboard.html" 
       },
       {
         "source": "**",

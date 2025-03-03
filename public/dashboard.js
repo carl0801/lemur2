@@ -1,9 +1,6 @@
 
 import { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, db, ref, set } from './firebase-config.js';
 
-const auth = getAuth();
-const db = getDatabase();
-
 
 // Fetch user data from the Realtime Database
 function fetchUserData(userId) {

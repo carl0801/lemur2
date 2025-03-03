@@ -42,6 +42,15 @@
         }
     </style>
 </head>
+
+<!-- Add scripts -->
+<script type="module" src="firebase-config.js">
+    import { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, db, ref, set } from './firebase-config.js';
+</script>
+<script type="module" src="database_hanlder.js">
+    import { addScore } from './database_hanlder.js';
+</script>
+
 <body>
     <div id="game-container">
         <div id="score">Score: 0</div>
@@ -134,6 +143,7 @@
         function gameOver() {
             clearInterval(gameLoop);
             gameStarted = false;
+            addScore('snake', user.uid, score);
             alert(`Game Over! Score: ${score}`);
             document.getElementById('start-button').textContent = 'Start Game';
         }
