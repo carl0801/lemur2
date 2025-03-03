@@ -107,7 +107,7 @@
 
   <script type="module" src="firebase-config.js"></script>
   <script type="module">
-    import { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, db, ref, set } from './firebase-config.js';
+    import { auth, updateProfile, createUserWithEmailAndPassword, signInWithEmailAndPassword, db, ref, set } from './firebase-config.js';
 
     // Clear all error/success messages and input fields when switching forms
     function clearMessages() {
@@ -176,7 +176,10 @@
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
       
-        user.displayName = username;
+      // Update user profile with username
+      await updateProfile(user, {
+        displayName: username,
+      });
 
         // Save user data to Realtime Database
         const userRef = ref(db, 'users/' + user.uid);
