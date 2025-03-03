@@ -80,9 +80,7 @@
 </head>
 
 <!-- Add the check-login script -->
-<script type="module" src="dashboard.js">
-  import { logout } from './dashboard.js';
-</script>
+<script type="module" src="dashboard.js"></script>
 
 <body>
 
@@ -111,7 +109,8 @@
 </body>
 
 <script type="module">
-// Add the logout event listener
+  // Add the logout event listener
+  import { logout } from './dashboard.js';
   document.getElementById("logout-button").addEventListener("click", logout);
 </script>
 

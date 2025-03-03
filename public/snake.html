@@ -44,11 +44,8 @@
 </head>
 
 <!-- Add scripts -->
-<script type="module" src="firebase-config.js">
-    import { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, db, ref, set } from './firebase-config.js';
-</script>
+<script type="module" src="firebase-config.js"></script>
 <script type="module" src="database_hanlder.js">
-    import { addScore } from './database_hanlder.js';
 </script>
 
 <body>
@@ -58,7 +55,9 @@
         <button id="start-button" onclick="startGame()">Start Game</button>
     </div>
 
-    <script>
+    <script type="module">
+        import { addScore } from './database_hanlder.js';
+        
         const canvas = document.getElementById('gameCanvas');
         const ctx = canvas.getContext('2d');
         const gridSize = 20;
