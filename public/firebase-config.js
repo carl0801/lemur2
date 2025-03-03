@@ -27,4 +27,4 @@ setPersistence(auth, browserSessionPersistence)
     console.error("Error setting persistence:", error);
   });
 
-export { auth, onAuthStateChanged, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword, db, ref, set, get };
+export { auth, updateProfile, onAuthStateChanged, signOut, createUserWithEmailAndPassword, signInWithEmailAndPassword, db, ref, set, get };
