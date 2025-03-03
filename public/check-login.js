@@ -3,6 +3,24 @@ import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/fi
 
 const auth = getAuth();
 
+// Fetch user data from the Realtime Database
+function fetchUserData(userId) {
+  const userRef = ref(db, 'users/' + userId);
+  get(userRef).then((snapshot) => {
+    if (snapshot.exists()) {
+      const userData = snapshot.val();
+      const username = userData.userData.username;
+      
+      // Display username next to logout button
+      document.getElementById("username-display").textContent = `Welcome, ${username}`;
+    } else {
+      console.log("No user data found");
+    }
+  }).catch((error) => {
+    console.error("Error fetching user data: ", error);
+  });
+}
+
 // Check if user is logged in
 onAuthStateChanged(auth, (user) => {
   if (!user) {
@@ -29,24 +47,6 @@ function logout() {
     }).catch((error) => {
       console.error("Error logging out: ", error);
     });
-}
-
-// Fetch user data from the Realtime Database
-function fetchUserData(userId) {
-  const userRef = ref(db, 'users/' + userId);
-  get(userRef).then((snapshot) => {
-    if (snapshot.exists()) {
-      const userData = snapshot.val();
-      const username = userData.userData.username;
-      
-      // Display username next to logout button
-      document.getElementById("username-display").textContent = `Welcome, ${username}`;
-    } else {
-      console.log("No user data found");
-    }
-  }).catch((error) => {
-    console.error("Error fetching user data: ", error);
-  });
 }
 
 export { logout };
