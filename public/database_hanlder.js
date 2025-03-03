@@ -1,29 +1,29 @@
 
-import { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, db, ref, set } from './firebase-config.js';
+import { auth, getAuth, getDatabase, db, ref, set, push } from './firebase-config.js';
 
-
-
+// Add a new score to the scoreboard
 function addScore(gameName, score) {
-    if (!auth.currentUser) {
-      console.error("User is not authenticated");
-      return;
+    const user = auth.currentUser;
+    if (!user) {
+        console.error("User is not authenticated");
+        return;
     }
     
-    const username = auth.currentUser.displayName;
-    const scoreRef = ref(`scoreboard/${gameName}`);
-    const newScoreRef = scoreRef.push(); // Generates a unique score ID
-  
-    newScoreRef.set({
-      username: username,
-      score: score
+    const username = user.displayName || "Anonymous"; // Fallback if displayName is null
+    const scoreRef = ref(db, `scoreboard/${gameName}`);
+    const newScoreRef = push(scoreRef); // Generates a unique score ID
+
+    set(newScoreRef, {
+        username: username,
+        score: score
     })
     .then(() => {
-      console.log("Score added successfully!");
+        console.log("Score added successfully!");
     })
     .catch((error) => {
-      console.error("Error adding score:", error);
+        console.error("Error adding score:", error);
     });
-  }
+}
 
-export { addScore, getUserData };
+export { addScore };
   
