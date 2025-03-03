@@ -79,15 +79,10 @@
   </style>
 </head>
 
-<!-- Add the Firebase scripts -->
-<script type="module" src="firebase-config.js">
-
-  import { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, db, ref, set } from './firebase-config.js';
-
-</script>
-
 <!-- Add the check-login script -->
-<script type="module" src="check-login.js"></script>
+<script type="module" src="dashboard.js">
+  import { logout } from './dashboard.js';
+</script>
 
 <body>
 
@@ -117,7 +112,6 @@
 
 <script type="module">
 // Add the logout event listener
-  import { logout } from './check-login.js';
   document.getElementById("logout-button").addEventListener("click", logout);
 </script>
 
