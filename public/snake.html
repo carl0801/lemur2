@@ -143,9 +143,9 @@
     }
 
     function gameOver() {
+        addScore('snake', score);
         clearInterval(gameLoop);
         gameStarted = false;
-        addScore('snake', score);
         alert(`Game Over! Score: ${score}`);
         document.getElementById('start-button').textContent = 'Start Game';
     }
