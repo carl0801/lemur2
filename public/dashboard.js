@@ -1,6 +1,5 @@
 
 import { auth, onAuthStateChanged, signOut, db, ref, get } from './firebase-config.js';
-import { getUserData } from './database_handler.js';
 
 
 // Check if user is logged in
@@ -10,9 +9,9 @@ onAuthStateChanged(auth, (user) => {
   }
   else {
     // Fetch user data from Firebase Realtime Database
-    const userName = user.displayName;
+    const displayName = user.displayName;
     // Display username next to logout button
-    document.getElementById("username-display").textContent = userName;
+    document.getElementById("username-display").textContent = "Welcome" + displayName;
   }
 });
 
