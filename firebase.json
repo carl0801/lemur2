@@ -10,6 +10,9 @@
       { "source": "/dashboard",
         "destination": "/dashboard.html" 
       },
+      { "source": "/snake",
+        "destination": "/snake.html" 
+      },
       {
         "source": "**",
         "destination": "/index.html"
