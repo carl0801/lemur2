@@ -175,11 +175,8 @@
       try {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
-
-      // Update the displayName with the username
-      await user.updateProfile({
-        displayName: username
-      });
+      
+        user.displayName = username;
 
         // Save user data to Realtime Database
         const userRef = ref(db, 'users/' + user.uid);
