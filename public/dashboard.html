@@ -98,13 +98,13 @@
     <h2>________________________________</h2>
     <button onclick="isFriday()">Is it Friday?</button>
     <div class="links">
-      <a href="/game.html">Go to Game</a>
-      <a href="/game2.html">Go to Game 2</a>
-      <a href="/game3.html">Go to Game 3</a>
-      <a href="/game4.html">Go to Box Runner Game</a>
-      <a href="/game5.html">Go to Game 5</a>
-      <a href="/lemur.html">Lemur Page 6</a>
-      <a href="/snake.html">Snake!! 6</a>
+      <button id="game1">Go to Game</button>
+      <button id="game2">Go to Game 2</button>
+      <button id="game3">Go to Game 3</button>
+      <button id="box_runner">Go to Box Runner Game</button>
+      <button id="game5">Go to Game 5</button>
+      <button id="lemur_page">Lemur Page 6</button>
+      <button id="snake">Snake!! 6</button>
     </div>
   </div>
 </body>
@@ -113,6 +113,29 @@
   // Add the logout event listener
   import { logout } from './auth_handler.js';
   document.getElementById("logout-button").addEventListener("click", logout);
+  
+  // Add page navigation event listeners
+  /*document.getElementById("game1").addEventListener("click", () => {
+    window.location.href = 'game1.html';
+  });
+  document.getElementById("game2").addEventListener("click", () => {
+    window.location.href = 'game2.html';
+  });
+  document.getElementById("game3").addEventListener("click", () => {
+    window.location.href = 'game3.html';
+  });
+  document.getElementById("box_runner").addEventListener("click", () => {
+    window.location.href = 'box_runner.html';
+  });
+  document.getElementById("game5").addEventListener("click", () => {
+    window.location.href = 'game5.html';
+  });
+  document.getElementById("lemur_page").addEventListener("click", () => {
+    window.location.href = 'lemur_page.html';
+  });*/
+  document.getElementById("snake").addEventListener("click", () => {
+    window.location.href = '/snake';
+  });
 </script>
 
 <script>
