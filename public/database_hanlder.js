@@ -2,12 +2,14 @@
 import { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, db, ref, set } from './firebase-config.js';
 
 
-function addScore(gameName, username, score) {
-    if (!firebase.auth().currentUser) {
+
+function addScore(gameName, score) {
+    if (!auth.currentUser) {
       console.error("User is not authenticated");
       return;
     }
-  
+    
+    const username = auth.currentUser.displayName;
     const scoreRef = ref(`scoreboard/${gameName}`);
     const newScoreRef = scoreRef.push(); // Generates a unique score ID
   
@@ -20,23 +22,6 @@ function addScore(gameName, username, score) {
     })
     .catch((error) => {
       console.error("Error adding score:", error);
-    });
-  }
-
-// Fetch user data from the Realtime Database
-function getUserData(userId) {
-    const userRef = ref(db, 'users/' + userId);
-    get(userRef).then((snapshot) => {
-      if (snapshot.exists()) {
-        const userData = snapshot.val();
-        
-        return userData;
-
-      } else {
-        console.log("No user data found");
-      }
-    }).catch((error) => {
-      console.error("Error fetching user data: ", error);
     });
   }
 

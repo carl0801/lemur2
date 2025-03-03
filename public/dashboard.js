@@ -10,9 +10,9 @@ onAuthStateChanged(auth, (user) => {
   }
   else {
     // Fetch user data from Firebase Realtime Database
-    const userData = getUserData(user.uid);
+    const userName = user.displayName;
     // Display username next to logout button
-    document.getElementById("username-display").textContent = `Welcome, ${userData.userData.username}`;
+    document.getElementById("username-display").textContent = `Welcome, ${userName}!`;
   }
 });
 
