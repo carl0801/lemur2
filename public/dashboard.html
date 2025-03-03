@@ -84,23 +84,6 @@
 
   import { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, db, ref, set } from './firebase-config.js';
 
-  // Fetch user data from the Realtime Database
-  function fetchUserData(userId) {
-    const userRef = ref(db, 'users/' + userId);
-    get(userRef).then((snapshot) => {
-      if (snapshot.exists()) {
-        const userData = snapshot.val();
-        const username = userData.userData.username;
-        
-        // Display username next to logout button
-        document.getElementById("username-display").textContent = `Welcome, ${username}`;
-      } else {
-        console.log("No user data found");
-      }
-    }).catch((error) => {
-      console.error("Error fetching user data: ", error);
-    });
-  }
 </script>
 
 <!-- Add the check-login script -->
