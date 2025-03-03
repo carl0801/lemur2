@@ -181,7 +181,11 @@
         // Save user data to Realtime Database
         const userRef = ref(db, 'users/' + user.uid);
         await set(userRef, {
-          gameData: {},
+          gameData: {
+            snake: {
+              highScore: 0,
+            },
+          },
         });
 
         registerError.className = "success-message";
