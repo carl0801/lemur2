@@ -157,7 +157,7 @@
         await signInWithEmailAndPassword(auth, email, password);
         loginError.className = "success-message";
         loginError.textContent = "Login successful!";
-        setTimeout(() => window.location.href = "/dashboard", 1000);
+        setTimeout(() => window.location.href = "/snake", 1000);
       } catch (error) {
         loginError.className = "error-message";
         loginError.textContent = `Error: ${error.message}`;
