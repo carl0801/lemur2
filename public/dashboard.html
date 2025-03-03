@@ -133,9 +133,18 @@
   document.getElementById("lemur_page").addEventListener("click", () => {
     window.location.href = 'lemur_page.html';
   });*/
-  document.getElementById("snake").addEventListener("click", () => {
-    window.location.href = "/snake"; console.log("snake");
-  });
+  document.addEventListener("DOMContentLoaded", () => {
+  const snakeButton = document.getElementById("snake");
+  
+  if (snakeButton) {
+    snakeButton.addEventListener("click", () => {
+      console.log("snake"); // Debugging output
+      window.location.href = "/snake.html";
+    });
+  } else {
+    console.error("Snake button not found in DOM.");
+  }
+});
 </script>
 
 <script>
