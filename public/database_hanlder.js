@@ -23,5 +23,22 @@ function addScore(gameName, username, score) {
     });
   }
 
-export { addScore };
+// Fetch user data from the Realtime Database
+function getUserData(userId) {
+    const userRef = ref(db, 'users/' + userId);
+    get(userRef).then((snapshot) => {
+      if (snapshot.exists()) {
+        const userData = snapshot.val();
+        
+        return userData;
+
+      } else {
+        console.log("No user data found");
+      }
+    }).catch((error) => {
+      console.error("Error fetching user data: ", error);
+    });
+  }
+
+export { addScore, getUserData };
   

@@ -58,7 +58,7 @@
 
 <script type="module">
     import { addScore } from './database_hanlder.js';
-    
+    import { auth } from './firebase-config.js';
     document.getElementById("start-button").addEventListener("click", startGame);
 
     const canvas = document.getElementById('gameCanvas');
@@ -145,7 +145,7 @@
     function gameOver() {
         clearInterval(gameLoop);
         gameStarted = false;
-        addScore('snake', user.uid, score);
+        addScore('snake', auth.currentUser, score);
         alert(`Game Over! Score: ${score}`);
         document.getElementById('start-button').textContent = 'Start Game';
     }
