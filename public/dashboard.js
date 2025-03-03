@@ -1,5 +1,5 @@
 
-import { auth, onAuthStateChanged, signOut, db, ref, get } from './firebase-config.js';
+import { auth, onAuthStateChanged } from './firebase-config.js';
 
 
 // Check if user is logged in
@@ -15,22 +15,5 @@ onAuthStateChanged(auth, (user) => {
   }
 });
 
-// Log out the user when they leave the page
-window.addEventListener("beforeunload", () => {
-  signOut(auth).catch((error) => {
-    console.error("Error logging out:", error);
-  });
-});
 
-// Example of a logout function
-function logout() {
-    signOut(auth).then(() => {
-      // After logging out, redirect to login page
-      window.location.href = "/";
-    }).catch((error) => {
-      console.error("Error logging out: ", error);
-    });
-}
-
-export { logout };
 
