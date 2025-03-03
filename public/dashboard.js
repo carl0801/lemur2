@@ -1,5 +1,6 @@
 
-import { auth, createUserWithEmailAndPassword, signInWithEmailAndPassword, db, ref, set } from './firebase-config.js';
+import { auth, onAuthStateChanged, signOut, db, ref } from './firebase-config.js';
+
 
 
 // Fetch user data from the Realtime Database
