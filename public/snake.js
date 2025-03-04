@@ -76,7 +76,7 @@ function drawGame() {
 
     // Draw snake
     snake.forEach((segment, index) => {
-        ctx.fillStyle = index === 0 ? '#388E3C' : '#4CAF50'; // Darker green for head
+        ctx.fillStyle = index === 0 ? '#1B5E20' : '#4CAF50'; // Darker green for head
         ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize - 2, gridSize - 2);
     });
 
