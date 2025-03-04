@@ -1,5 +1,5 @@
 
-import { auth, getAuth, onAuthStateChanged, getDatabase, db, ref, set, push, onChildAdded } from './firebase-config.js';
+import { auth, getAuth, onAuthStateChanged, getDatabase, db, ref, set, push, onChildAdded, get } from './firebase-config.js';
 
 // Add a new score to the scoreboard
 function addScore(gameName, score) {
