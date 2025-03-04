@@ -104,7 +104,7 @@
       <button id="box_runner">Go to Box Runner Game</button>
       <button id="game5">Go to Game 5</button>
       <button id="lemur_page">Lemur Page 6</button>
-      <button id="snake_button" onclick="window.location.href='/snake.html'">Snake!! 6</button>
+      <button id="snake_button">Snake!! 6</button>
     </div>
   </div>
 </body>
@@ -114,6 +114,10 @@
   import { logout } from './auth_handler.js';
   document.getElementById("logout-button").addEventListener("click", logout);
 
+  document.getElementById("snake_button").addEventListener("click", () => {
+    console.log("clicked");
+    window.location.href = "/snake";
+  });
 
 </script>
 
