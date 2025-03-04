@@ -194,6 +194,30 @@ document.addEventListener('keydown', (e) => {
 // Initial draw
 drawGame();
 
+// Create table rows to display the highscore color levels
+function createColorTable() {
+    const tbody = document.getElementById("highscore-table").getElementsByTagName('tbody')[0];
+
+    colorSchemes.forEach((scheme, index) => {
+        const row = document.createElement('tr');
+        const levelCell = document.createElement('td');
+        levelCell.textContent = `${scheme.min}-${scheme.max}`;
+        
+        const colorCell = document.createElement('td');
+        colorCell.style.backgroundColor = scheme.head;
+        colorCell.style.color = "#fff";
+        colorCell.style.textAlign = "center";
+        colorCell.textContent = scheme.head;
+
+        row.appendChild(levelCell);
+        row.appendChild(colorCell);
+        tbody.appendChild(row);
+    });
+}
+
+// Call the function to populate the table when the page loads
+createColorTable();
+
 
 export { };
   
