@@ -89,11 +89,10 @@ onAuthStateChanged(auth, (user) => {
             const highscore = snapshot.val() || 0;
             selectedColors = getColorScheme(highscore);
             console.log("Updated selectedColors based on high score:", selectedColors);
+            // Initial draw
+            drawGame();
         });
 
-        // Initial draw
-        drawGame();
-        
     } else {
         console.log("User is not logged in");
     }
