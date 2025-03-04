@@ -49,24 +49,23 @@
 </script>
 
 <body>
+    <!-- Table for high score color levels -->
+    <div id="scoreboard-container">
+        <table id="highscore-table">
+            <thead>
+                <tr>
+                    <th>Level</th>
+                    <th>Head Color</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Table rows will be dynamically added here -->
+            </tbody>
+        </table>
+    </div>
+    
     <div id="game-container">
         <div id="score">Score: 0</div>
-
-        <!-- Table for high score color levels -->
-        <div id="scoreboard-container">
-            <table id="highscore-table">
-                <thead>
-                    <tr>
-                        <th>Level</th>
-                        <th>Head Color</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <!-- Table rows will be dynamically added here -->
-                </tbody>
-            </table>
-        </div>
-        
         <canvas id="gameCanvas" width="400" height="400"></canvas>
         <button id="start-button">Start Game</button>
     </div>
