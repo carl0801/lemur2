@@ -11,6 +11,22 @@ function addScore(gameName, score) {
             const username = user.displayName || "Anonymous"; // Fallback if displayName is null
             const scoreRef = ref(db, `scoreboard/${gameName}`);
             const newScoreRef = push(scoreRef); // Generates a unique score ID
+
+            const highScoreRef = ref(db, `users/${user.uid}/gameData/${gameName}/highscores`);
+
+            // Check if the current score is higher than the user's highscore
+            get(highScoreRef).then((snapshot) => {
+                const highscore = snapshot.val();
+                if (score > highscore) {
+                    set(highScoreRef, score)
+                    .then(() => {
+                        console.log("Highscore updated successfully!");
+                    })
+                    .catch((error) => {
+                        console.error("Error updating highscore:", error);
+                    });
+                }
+            });
         
             set(newScoreRef, {
                 username: username,
