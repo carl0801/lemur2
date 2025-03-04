@@ -58,16 +58,16 @@ let gameStarted = false;
 
 // Define high-score-based color schemes
 const colorSchemes = [
-    { min: 0, max: 200, head: "#4CAF50", body: "#1B5E20" },  // Green
-    { min: 201, max: 400, head: "#FFEB3B", body: "#F9A825" }, // Yellow-Gold
-    { min: 401, max: 600, head: "#2196F3", body: "#0D47A1" }, // Blue
-    { min: 601, max: 800, head: "#FF5722", body: "#BF360C" }, // Orange-Red
-    { min: 801, max: 1000, head: "#9C27B0", body: "#4A148C" }, // Purple
-    { min: 1001, max: 1200, head: "#E91E63", body: "#880E4F" }, // Pink
-    { min: 1201, max: 1400, head: "#00BCD4", body: "#006064" }, // Cyan
-    { min: 1401, max: 1600, head: "#8BC34A", body: "#33691E" }, // Lime Green
-    { min: 1601, max: 1800, head: "#F44336", body: "#B71C1C" }, // Red
-    { min: 1801, max: Infinity, head: "#795548", body: "#3E2723" }  // Brown
+    { min: 0, max: 200, head: "#4CAF50", body: "#1B5E20", level: 1 },  // Green
+    { min: 201, max: 400, head: "#FFEB3B", body: "#F9A825", level: 2 }, // Yellow-Gold
+    { min: 401, max: 600, head: "#2196F3", body: "#0D47A1", level: 3 }, // Blue
+    { min: 601, max: 800, head: "#FF5722", body: "#BF360C", level: 4 }, // Orange-Red
+    { min: 801, max: 1000, head: "#9C27B0", body: "#4A148C", level: 5 }, // Purple
+    { min: 1001, max: 1200, head: "#E91E63", body: "#880E4F", level: 6 }, // Pink
+    { min: 1201, max: 1400, head: "#00BCD4", body: "#006064", level: 7 }, // Cyan
+    { min: 1401, max: 1600, head: "#8BC34A", body: "#33691E", level: 8 }, // Lime Green
+    { min: 1601, max: 1800, head: "#F44336", body: "#B71C1C", level: 9 }, // Red
+    { min: 1801, max: Infinity, head: "#795548", body: "#3E2723", level: 10 }  // Brown
 ];
 
 // Function to get the appropriate color scheme based on high score
@@ -201,13 +201,12 @@ function createColorTable() {
     colorSchemes.forEach((scheme, index) => {
         const row = document.createElement('tr');
         const levelCell = document.createElement('td');
-        levelCell.textContent = `${scheme.min}-${scheme.max}`;
+        levelCell.textContent = `${scheme.level}`;
         
         const colorCell = document.createElement('td');
         colorCell.style.backgroundColor = scheme.head;
         colorCell.style.color = "#fff";
         colorCell.style.textAlign = "center";
-        colorCell.textContent = scheme.head;
 
         row.appendChild(levelCell);
         row.appendChild(colorCell);
