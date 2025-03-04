@@ -76,6 +76,17 @@
     #logout-button:hover {
       background-color: #c82333;
     }
+
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      border: 1px solid black;
+    }
+    th, td {
+      border: 1px solid black;
+      padding: 5px;
+      text-align: left;
+    }
   </style>
 </head>
 
@@ -86,9 +97,34 @@
   document.getElementById("logout-button").addEventListener("click", logout);
 </script>
 
+<!-- Add the check-login script -->
+<script type="module" src="database_hanlder.js">
+  // Add the logout event listener
+  import { updateScoreboard } from './auth_handler.js';
+  updateScoreboard();
+</script>
+
 <script type="module" src="dashboard.js"></script>
 
 <body>
+  <!-- Scoreboard -->
+  <div id="scoreboard" style="position: absolute; top: 10px; left: 10px; background: white; padding: 10px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+    <h3 style="margin: 0;">Snake Scoreboard</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Rank</th>
+          <th>Username</th>
+          <th>Score</th>
+        </tr>
+      </thead>
+      <tbody id="scoreboard-body">
+        <tr><td>1st</td><td>-</td><td>-</td></tr>
+        <tr><td>2nd</td><td>-</td><td>-</td></tr>
+        <tr><td>3rd</td><td>-</td><td>-</td></tr>
+      </tbody>
+    </table>
+  </div>
 
   <!-- Username Display and Logout Button -->
   <div style="position: absolute; top: 10px; right: 10px; display: flex; align-items: center;">
@@ -113,6 +149,7 @@
     </div>
   </div>
 </body>
+
 
 <script type="module">
   document.getElementById("snake_button").addEventListener("click", (event) => {
