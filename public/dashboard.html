@@ -114,10 +114,12 @@
   import { logout } from './auth_handler.js';
   document.getElementById("logout-button").addEventListener("click", logout);
 
-  document.getElementById("snake_button").addEventListener("click", () => {
-    console.log("clicked");
-    window.location.href = "/snake";
-  });
+  document.getElementById("snake_button").addEventListener("click", (event) => {
+  event.preventDefault(); // Prevents form submission if inside a form
+  console.log("clicked");
+  window.location.href = "/snake";
+});
+
 
 </script>
 
