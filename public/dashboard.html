@@ -112,7 +112,11 @@
 <script type="module">
   // Add the logout event listener
   import { logout } from './auth_handler.js';
-  document.getElementById("logout-button").addEventListener("click", logout);
+  document.getElementById("game1").addEventListener("click", logout);
+
+  document.getElementById("game1").addEventListener("click", () => {
+    console.log("clicked");
+  });
 
   document.getElementById("snake_button").addEventListener("click", (event) => {
   event.preventDefault(); // Prevents form submission if inside a form
