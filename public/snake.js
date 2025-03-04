@@ -56,6 +56,42 @@ let score = 0;
 let gameLoop;
 let gameStarted = false;
 
+// Define high-score-based color schemes
+const colorSchemes = [
+    { min: 0, max: 200, head: "#4CAF50", body: "#1B5E20" },  // Green
+    { min: 201, max: 400, head: "#FFEB3B", body: "#F9A825" }, // Yellow-Gold
+    { min: 401, max: 600, head: "#2196F3", body: "#0D47A1" }, // Blue
+    { min: 601, max: 800, head: "#FF5722", body: "#BF360C" }, // Orange-Red
+    { min: 801, max: 1000, head: "#9C27B0", body: "#4A148C" }, // Purple
+    { min: 1001, max: 1200, head: "#E91E63", body: "#880E4F" }, // Pink
+    { min: 1201, max: 1400, head: "#00BCD4", body: "#006064" }, // Cyan
+    { min: 1401, max: 1600, head: "#8BC34A", body: "#33691E" }, // Lime Green
+    { min: 1601, max: 1800, head: "#F44336", body: "#B71C1C" }, // Red
+    { min: 1801, max: Infinity, head: "#795548", body: "#3E2723" }  // Brown
+];
+
+// Function to get the appropriate color scheme based on high score
+function getColorScheme(highScore) {
+    return colorSchemes.find(scheme => highScore >= scheme.min && highScore <= scheme.max) || colorSchemes[0];
+}
+
+// Store selected colors (default to the first scheme)
+let selectedColors = colorSchemes[0];
+
+// Get current user
+const user = auth.currentUser;
+
+// Check if the user is logged in and fetch high score
+if (user) {
+    const highScoreRef = ref(db, `users/${user.uid}/gameData/snake/highScore`);
+
+    // Use `onValue()` to update colors dynamically when high score changes
+    onValue(highScoreRef, (snapshot) => {
+        const highscore = snapshot.val() || 0;
+        selectedColors = getColorScheme(highscore);
+    });
+}
+
 function drawGame() {
     // Move snake
     const head = { x: snake[0].x + dx, y: snake[0].y + dy };
@@ -74,12 +110,13 @@ function drawGame() {
     ctx.fillStyle = '#111';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
+    
     // Draw snake
     snake.forEach((segment, index) => {
-        ctx.fillStyle = index === 0 ? '#4CAF50' : '#1B5E20'; // Darker green for head
+        ctx.fillStyle = index === 0 ? selectedColors.head : selectedColors.body;
         ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize - 2, gridSize - 2);
     });
-
+    
 
     // Draw food
     ctx.fillStyle = '#ff4444';
