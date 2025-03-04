@@ -80,6 +80,7 @@ let selectedColors = colorSchemes[0];
 
 // Get current user
 const user = auth.currentUser;
+console.log(user);
 
 // Check if the user is logged in and fetch high score
 if (user) {
