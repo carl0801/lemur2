@@ -77,16 +77,44 @@
       background-color: #c82333;
     }
 
-    table {
-      border-collapse: collapse;
-      width: 100%;
-      border: 1px solid black;
-    }
-    th, td {
-      border: 1px solid black;
-      padding: 5px;
-      text-align: left;
-    }
+    #scoreboard {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: rgba(0, 123, 255, 0.9);
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    color: white;
+    width: 250px;
+    text-align: center;
+  }
+
+  #scoreboard h3 {
+    margin: 0 0 10px 0;
+    font-size: 20px;
+    font-weight: bold;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  th, td {
+    padding: 8px;
+    text-align: center;
+  }
+
+  th {
+    background-color: rgba(255, 255, 255, 0.2);
+    border-bottom: 2px solid white;
+  }
+
+  td {
+    background-color: rgba(255, 255, 255, 0.1);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  }
   </style>
 </head>
 
@@ -100,7 +128,7 @@
 
 <body>
   <!-- Scoreboard -->
-  <div id="scoreboard" style="position: absolute; top: 10px; left: 10px; background: white; padding: 10px; border-radius: 5px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
+  <div id="scoreboard">
     <h3 style="margin: 0;">Snake Scoreboard</h3>
     <table>
       <thead>
