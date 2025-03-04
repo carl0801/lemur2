@@ -1,8 +1,6 @@
 
 import { auth, onAuthStateChanged, push, onChildAdded, db, ref } from './firebase-config.js';
 import { logout } from './auth_handler.js';
-import { scoreboardRef } from './database_handler.js';
-
 
 // Check if user is logged in
 onAuthStateChanged(auth, (user) => {
