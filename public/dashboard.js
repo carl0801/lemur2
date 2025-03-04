@@ -1,5 +1,6 @@
 
 import { auth, onAuthStateChanged } from './firebase-config.js';
+import { logout } from './auth_handler.js';
 
 
 // Check if user is logged in
@@ -14,6 +15,8 @@ onAuthStateChanged(auth, (user) => {
     document.getElementById("username-display").textContent = "Welcome " + displayName;
   }
 });
+
+document.getElementById("logout-button").addEventListener("click", logout);
 
 
 
