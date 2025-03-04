@@ -12,7 +12,7 @@ function addScore(gameName, score) {
             const scoreRef = ref(db, `scoreboard/${gameName}`);
             const newScoreRef = push(scoreRef); // Generates a unique score ID
 
-            const highScoreRef = ref(db, `users/${user.uid}/gameData/${gameName}/highscores`);
+            const highScoreRef = ref(db, `users/${user.uid}/gameData/${gameName}/highScore`);
 
             // Check if the current score is higher than the user's highscore
             get(highScoreRef).then((snapshot) => {
