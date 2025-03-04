@@ -75,10 +75,11 @@ function drawGame() {
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     // Draw snake
-    ctx.fillStyle = '#4CAF50';
-    snake.forEach(segment => {
+    snake.forEach((segment, index) => {
+        ctx.fillStyle = index === 0 ? '#388E3C' : '#4CAF50'; // Darker green for head
         ctx.fillRect(segment.x * gridSize, segment.y * gridSize, gridSize - 2, gridSize - 2);
     });
+
 
     // Draw food
     ctx.fillStyle = '#ff4444';
