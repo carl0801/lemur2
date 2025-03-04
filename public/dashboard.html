@@ -83,7 +83,7 @@
 <script type="module" src="auth_handler.js">
   // Add the logout event listener
   import { logout } from './auth_handler.js';
-  document.getElementById("game1").addEventListener("click", logout);
+  document.getElementById("logout-button").addEventListener("click", logout);
 </script>
 
 <script type="module" src="dashboard.js"></script>
@@ -117,7 +117,7 @@
 <script type="module">
   document.getElementById("snake_button").addEventListener("click", (event) => {
   event.preventDefault(); // Prevents form submission if inside a form
-  console.log("clicked");
+  console.log("Going to snake game");
   window.location.href = "/snake";
 });
 </script>
