@@ -89,6 +89,7 @@ if (user) {
     onValue(highScoreRef, (snapshot) => {
         const highscore = snapshot.val() || 0;
         selectedColors = getColorScheme(highscore);
+        console.log(selectedColors);
     });
 }
 
