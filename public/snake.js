@@ -90,6 +90,10 @@ onAuthStateChanged(auth, (user) => {
             selectedColors = getColorScheme(highscore);
             console.log("Updated selectedColors based on high score:", selectedColors);
         });
+
+        // Initial draw
+        drawGame();
+        
     } else {
         console.log("User is not logged in");
     }
@@ -190,9 +194,6 @@ document.addEventListener('keydown', (e) => {
             break;
     }
 });
-
-// Initial draw
-drawGame();
 
 
 export { };
