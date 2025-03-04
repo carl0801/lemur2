@@ -78,21 +78,22 @@ function getColorScheme(highScore) {
 // Store selected colors (default to the first scheme)
 let selectedColors = colorSchemes[0];
 
-// Get current user
-const user = auth.currentUser;
-console.log(user);
+// Listen for auth state changes (user logged in or out)
+onAuthStateChanged(auth, (user) => {
+    if (user) {
+        // Get the user's high score from Firebase
+        const highScoreRef = ref(db, `users/${user.uid}/gameData/snake/highScore`);
 
-// Check if the user is logged in and fetch high score
-if (user) {
-    const highScoreRef = ref(db, `users/${user.uid}/gameData/snake/highScore`);
-
-    // Use `onValue()` to update colors dynamically when high score changes
-    onValue(highScoreRef, (snapshot) => {
-        const highscore = snapshot.val() || 0;
-        selectedColors = getColorScheme(highscore);
-        console.log(selectedColors);
-    });
-}
+        // Listen for high score updates in real-time
+        onValue(highScoreRef, (snapshot) => {
+            const highscore = snapshot.val() || 0;
+            selectedColors = getColorScheme(highscore);
+            console.log("Updated selectedColors based on high score:", selectedColors);
+        });
+    } else {
+        console.log("User is not logged in");
+    }
+});
 
 function drawGame() {
     // Move snake
