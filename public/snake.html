@@ -4,91 +4,42 @@
     <meta charset="UTF-8">
     <title>Snake Game</title>
     <style>
-            /* Add some basic styles to the page */
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: Arial, sans-serif;
-        background-color: #f4f4f4;
-    }
-
-    #game-container {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 20px;
-    }
-
-    #scoreboard-container {
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        max-width: 400px;  /* Match the game window size */
-        margin-right: 20px;
-        width: 100%;
-    }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-        background-color: #fff;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        border-radius: 8px;
-        overflow: hidden;
-    }
-
-    th, td {
-        padding: 15px;
-        text-align: center;
-        border: 1px solid #ddd;
-        font-size: 14px;
-    }
-
-    th {
-        background-color: #333;
-        color: #fff;
-    }
-
-    td {
-        background-color: #f9f9f9;
-    }
-
-    tr:hover {
-        background-color: #f1f1f1;
-    }
-
-    #game-area {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        text-align: center;
-    }
-
-    #score {
-        font-size: 18px;
-        margin-bottom: 10px;
-    }
-
-    canvas {
-        border: 1px solid #000;
-    }
-
-    #start-button {
-        margin-top: 15px;
-        padding: 10px 20px;
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        cursor: pointer;
-        border-radius: 5px;
-    }
-
-    #start-button:hover {
-        background-color: #45a049;
-    }
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #333;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-family: Arial, sans-serif;
+        }
+        #game-container {
+            background: #000;
+            padding: 10px;
+            border-radius: 5px;
+        }
+        canvas {
+            background: #111;
+            border: 1px solid #444;
+        }
+        #score {
+            color: white;
+            font-size: 24px;
+            margin: 10px 0;
+        }
+        #start-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 10px;
+            cursor: pointer;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+        }
+        #start-button:hover {
+            background: #45a049;
+        }
     </style>
 </head>
 
@@ -98,21 +49,6 @@
 </script>
 
 <body>
-    <!-- Table for high score color levels -->
-    <div id="scoreboard-container"></div>
-        <table id="highscore-table">
-            <thead>
-                <tr>
-                    <th>Level</th>
-                    <th>Head Color</th>
-                </tr>
-            </thead>
-            <tbody>
-                <!-- Table rows will be dynamically added here -->
-            </tbody>
-        </table>
-    </div>
-
     <div id="game-container">
         <div id="score">Score: 0</div>
         <canvas id="gameCanvas" width="400" height="400"></canvas>
