@@ -77,6 +77,7 @@ function getColorScheme(highScore) {
 
 // Store selected colors (default to the first scheme)
 let selectedColors = colorSchemes[0];
+let colorsUpdated = false;
 
 // Listen for auth state changes (user logged in or out)
 onAuthStateChanged(auth, (user) => {
@@ -89,8 +90,9 @@ onAuthStateChanged(auth, (user) => {
             const highscore = snapshot.val() || 0;
             selectedColors = getColorScheme(highscore);
             console.log("Updated selectedColors based on high score:", selectedColors);
-            // Initial draw
-            drawGame();
+            
+            colorsUpdated = true;
+
         });
 
     } else {
@@ -193,6 +195,11 @@ document.addEventListener('keydown', (e) => {
             break;
     }
 });
+
+// If the colors are updated, call drawGame
+if (colorsUpdated) {
+    drawGame();
+}
 
 
 export { };
