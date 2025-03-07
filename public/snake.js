@@ -59,7 +59,7 @@ let gameStarted = false;
 // Define high-score-based color schemes
 const colorSchemes = [
     { min: 0, max: 200, head: "#4CAF50", body: "#1B5E20", level: 1 },  // Green
-    { min: 201, max: 400, head: "#111", body: "#F9A825", level: 2 }, // Yellow-Gold
+    { min: 201, max: 400, head: "#FFEB3B", body: "#111", level: 2 }, // Yellow-Gold
     { min: 401, max: 600, head: "#2196F3", body: "#0D47A1", level: 3 }, // Blue
     { min: 601, max: 800, head: "#FF5722", body: "#BF360C", level: 4 }, // Orange-Red
     { min: 801, max: 1000, head: "#9C27B0", body: "#4A148C", level: 5 }, // Purple
