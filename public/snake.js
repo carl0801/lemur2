@@ -56,6 +56,12 @@ let score = 0;
 let gameLoop;
 let gameStarted = false;
 
+let bonusFood = null;
+let bonusFoodTimer = null;
+let bonusFoodOpacity = 0;
+let bonusFoodFadeDirection = 1;
+
+
 // Define high-score-based color schemes
 const colorSchemes = [
     { min: 0, max: 200, head: "#4CAF50", body: "#1B5E20", level: 1 },  // Green
@@ -100,6 +106,28 @@ onAuthStateChanged(auth, (user) => {
     }
 });
 
+function spawnBonusFood() {
+    bonusFood = {
+        x: Math.floor(Math.random() * tileCount),
+        y: Math.floor(Math.random() * tileCount)
+    };
+    bonusFoodOpacity = 0;
+    bonusFoodFadeDirection = 1;
+
+    // Avoid spawning on top of regular food or snake
+    if ((bonusFood.x === food.x && bonusFood.y === food.y) ||
+        snake.some(seg => seg.x === bonusFood.x && seg.y === bonusFood.y)) {
+        spawnBonusFood();
+        return;
+    }
+
+    // Remove after 3 seconds
+    bonusFoodTimer = setTimeout(() => {
+        bonusFood = null;
+    }, 3000);
+}
+
+
 function drawGame() {
     // Move snake
     const head = { x: snake[0].x + dx, y: snake[0].y + dy };
@@ -113,6 +141,15 @@ function drawGame() {
     } else {
         snake.pop();
     }
+
+    // Check if snake ate bonus food
+    if (bonusFood && head.x === bonusFood.x && head.y === bonusFood.y) {
+        score += 30;
+        document.getElementById('score').textContent = `Score: ${score}`;
+        clearTimeout(bonusFoodTimer);
+        bonusFood = null;
+    }
+    
 
     // Clear canvas
     ctx.fillStyle = '#111';
@@ -129,6 +166,21 @@ function drawGame() {
     // Draw food
     ctx.fillStyle = '#ff4444';
     ctx.fillRect(food.x * gridSize, food.y * gridSize, gridSize - 2, gridSize - 2);
+
+    // Draw bonus (blue) food if it exists
+    if (bonusFood) {
+        bonusFoodOpacity += 0.1 * bonusFoodFadeDirection;
+        if (bonusFoodOpacity >= 1) {
+            bonusFoodOpacity = 1;
+            bonusFoodFadeDirection = -1;
+        } else if (bonusFoodOpacity <= 0.2) {
+            bonusFoodOpacity = 0.2;
+            bonusFoodFadeDirection = 1;
+        }
+        ctx.fillStyle = `rgba(0, 153, 255, ${bonusFoodOpacity.toFixed(2)})`;
+        ctx.fillRect(bonusFood.x * gridSize, bonusFood.y * gridSize, gridSize - 2, gridSize - 2);
+    }
+    
 
     // Check collision with walls
     if (head.x < 0 || head.x >= tileCount || head.y < 0 || head.y >= tileCount) {
@@ -148,14 +200,20 @@ function drawGame() {
 function generateFood() {
     food.x = Math.floor(Math.random() * tileCount);
     food.y = Math.floor(Math.random() * tileCount);
-    
+
     // Ensure food doesn't spawn on snake
     snake.forEach(segment => {
         if (segment.x === food.x && segment.y === food.y) {
             generateFood();
         }
     });
+
+    // 20% chance to spawn bonus food
+    if (Math.random() < 0.2) {
+        spawnBonusFood();
+    }
 }
+
 
 function startGame() {
     if (gameStarted) return;
